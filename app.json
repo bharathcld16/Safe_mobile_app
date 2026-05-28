@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "SAFE",
+    "slug": "safe-emergency",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0d0d0d"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.safe.emergency",
+      "infoPlist": {
+        "NSMotionUsageDescription": "SAFE uses motion to detect shake gestures for emergency SOS.",
+        "NSLocationWhenInUseUsageDescription": "SAFE uses your location to send it to emergency contacts.",
+        "NSLocationAlwaysUsageDescription": "SAFE uses your location in the background for emergency alerts.",
+        "NSCameraUsageDescription": "SAFE uses the camera to take your profile photo.",
+        "NSPhotoLibraryUsageDescription": "SAFE accesses your photos to set your profile picture."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0d0d0d"
+      },
+      "package": "com.safe.emergency",
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+        "VIBRATE",
+        "RECEIVE_BOOT_COMPLETED",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      "expo-secure-store",
+      "expo-location",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#ff3b3b"
+        }
+      ]
+    ]
+  }
+}
