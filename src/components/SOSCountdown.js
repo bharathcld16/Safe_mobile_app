@@ -1,25 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Vibration, Modal } from 'react-native';
 
+const COUNTDOWN_SECONDS = 10; // cancellation window before the alert is actually sent
+
 export default function SOSCountdown({ visible, onSend, onCancel }) {
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(COUNTDOWN_SECONDS);
   const timer = useRef(null);
 
   useEffect(() => {
-    if (!visible) { setCount(5); return; }
+    if (!visible) { setCount(COUNTDOWN_SECONDS); return; }
 
     Vibration.vibrate([0, 300, 200, 300, 200, 300]);
-    setCount(5);
+    setCount(COUNTDOWN_SECONDS);
 
+    let remaining = COUNTDOWN_SECONDS;
     timer.current = setInterval(() => {
-      setCount(prev => {
-        if (prev <= 1) {
-          clearInterval(timer.current);
-          onSend();
-          return 5;
-        }
-        return prev - 1;
-      });
+      remaining -= 1;
+      if (remaining <= 0) {
+        clearInterval(timer.current);
+        onSend();
+        return;
+      }
+      setCount(remaining);
     }, 1000);
 
     return () => clearInterval(timer.current);
